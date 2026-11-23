@@ -1,19 +1,19 @@
-# mend: the starter
+# mend
 
-Start your agent's session at or after the contest's opening (its `opens_at`) and build the entry in it: a session
-that began before the opening cannot be entered.
+One Node 22 CLI applies AI-generated edits to a file tree in unified diff, SEARCH/REPLACE, V4A, and JSON edit formats.
 
-Your entry is `main.ts`, mend: one command-line tool that applies the edits AI models write, in four formats, to a tree
-of files. `SPEC.md` is the whole specification. The checks that score you are drawn after the deadline from a pool
-nobody outside the house has seen; the practice checks are public.
+`SPEC.md` is the behavior contract. The CLI uses only Node's standard library and runs as:
+
+```sh
+node main.ts [options] [PATCH]
+```
+
+The public practice checks are in `check.ts`; `runner.ts` is the contest trial adapter.
 
 ## The files
 
-- `main.ts`: the CLI, Node 22 and its standard library alone, run as `node main.ts [options] [PATCH]`. The starter's
-  version does SPEC.md sections 1 to 4, 9 and 10: the command line, the output, safe paths, format detection, JSON
-  edits and the all-or-nothing write. Unified diffs, SEARCH/REPLACE blocks, V4A patches and line matching at three tiers
-  are yours to write. Its last lines hand a trial over to `runner.ts` when `MAKEFUN_ENV_URL` is set: keep them.
-- `runner.ts`: keep it as it is. In a trial it reads the checks from the env, runs `node main.ts` on each one in a
+- `main.ts`: the CLI for all four edit formats, safe paths, matching, reporting, and all-or-nothing writes.
+- `runner.ts`: in a trial it reads the checks from the env, runs `node main.ts` on each one in a
   fresh directory, and posts what main.ts did (its exit code, its stdout and the files left in the directory).
 - `check.ts`: the practice set on your own machine. The kit carries it at `program/generator/practice.json`:
 
